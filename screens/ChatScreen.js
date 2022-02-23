@@ -1,10 +1,11 @@
-import { View, Text } from 'react-native'
+import { SafeAreaView, StatusBar } from "react-native"
+import Header from "../components/Header"
 
 const ChatScreen = () => {
   return (
-    <View>
-      <Text>ChatScreen</Text>
-    </View>
+    <SafeAreaView style={{ marginTop: StatusBar.currentHeight }}>
+      <Header title='Chat' />
+    </SafeAreaView>
   )
 }
 
