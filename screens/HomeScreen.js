@@ -9,33 +9,6 @@ import { collection, doc, getDoc, getDocs, onSnapshot, query, serverTimestamp, s
 import { db } from '../firebase'
 import generateId from '../lib/generateId'
 
-const DUMMY_DATA = [
-    {
-        firstName: 'Sonny',
-        lastName: 'Chang',
-        job: 'Software Engineer',
-        photoURL: 'https://avatars.githubusercontent.com/u/24712956?v=4',
-        age: '27',
-        id: '1'
-    },
-    {
-        firstName: 'Elon',
-        lastName: 'Musk',
-        job: 'CEO of Tesla',
-        photoURL: 'https://upload.wikimedia.org/wikipedia/commons/3/34/Elon_Musk_Royal_Society_%28crop2%29.jpg',
-        age: '56',
-        id: '2'
-    },
-    {
-        firstName: 'Mark',
-        lastName: 'Zuckerberg',
-        job: 'CEO of Meta',
-        photoURL: 'https://upload.wikimedia.org/wikipedia/commons/1/18/Mark_Zuckerberg_F8_2019_Keynote_%2832830578717%29_%28cropped%29.jpg',
-        age: '37',
-        id: '3'
-    }
-]
-
 const HomeScreen = () => {
 
     const navigation = useNavigation()
