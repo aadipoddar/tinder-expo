@@ -6,7 +6,7 @@ const MatchedScreen = () => {
     const navigation = useNavigation()
     const { params } = useRoute()
 
-    const { loggedInProfile, userSwiped } = params;
+    const { loggedInProfile, userSwiped } = params
 
     return (
         <View style={[tw('h-full bg-red-500 pt-20'), { opacity: 0.89 }]}>

@@ -1,6 +1,6 @@
-import { SafeAreaView, StatusBar } from "react-native"
-import ChatList from "../components/ChatList"
-import Header from "../components/Header"
+import { SafeAreaView, StatusBar } from 'react-native'
+import ChatList from '../components/ChatList'
+import Header from '../components/Header'
 
 const ChatScreen = () => {
   return (

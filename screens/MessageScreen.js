@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 import { View, Text, SafeAreaView, StatusBar, TextInput, KeyboardAvoidingView, Button, FlatList, Keyboard, TouchableWithoutFeedback } from 'react-native'
 import { useRoute } from '@react-navigation/native'
 import tw from 'tailwind-rn'
 import useAuth from '../hooks/useAuth'
 import Header from '../components/Header'
 import getMatchedUserInfo from '../lib/getMatchedUserInfo'
-import SenderMessage from '../components/SenderMessage';
-import RecieverMessage from '../components/RecieverMessage';
-import { addDoc, collection, onSnapshot, orderBy, query, serverTimestamp } from 'firebase/firestore';
-import { db } from '../firebase';
+import SenderMessage from '../components/SenderMessage'
+import RecieverMessage from '../components/RecieverMessage'
+import { addDoc, collection, onSnapshot, orderBy, query, serverTimestamp } from 'firebase/firestore'
+import { db } from '../firebase'
 
 const MessageScreen = () => {
 
