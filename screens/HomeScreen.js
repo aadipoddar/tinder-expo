@@ -5,8 +5,9 @@ import tw from 'tailwind-rn'
 import useAuth from '../hooks/useAuth'
 import Swiper from 'react-native-deck-swiper'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { collection, doc, getDocs, onSnapshot, query, setDoc, where } from 'firebase/firestore'
+import { collection, doc, getDoc, getDocs, onSnapshot, query, serverTimestamp, setDoc, where } from 'firebase/firestore'
 import { db } from '../firebase'
+import generateId from '../lib/generateId'
 
 const DUMMY_DATA = [
     {
@@ -75,8 +76,7 @@ const HomeScreen = () => {
                             .filter((doc) => doc.id !== user.uid)
                             .map((doc, id) => {
                                 return { id: doc.id, ...doc.data() }
-                            })
-                    )
+                            }))
                 })
         }
         fetchCards()
@@ -89,10 +89,36 @@ const HomeScreen = () => {
         setDoc(doc(db, 'users', user.uid, 'passes', userSwiped.id), userSwiped)
     }
 
-    const swipeRight = (cardIndex) => {
+    const swipeRight = async (cardIndex) => {
         if (!profiles[cardIndex]) return
+
         const userSwiped = profiles[cardIndex]
-        setDoc(doc(db, 'users', user.uid, 'swipes', userSwiped.id), userSwiped)
+        const loggedInProfile = await (await getDoc(doc(db, 'users', user.uid))).data()
+
+        getDoc(doc(db, 'users', userSwiped.id, 'swipes', user.uid))
+            .then(documentSnapshot => {
+
+                if (documentSnapshot.exists()) {
+                    setDoc(doc(db, 'users', user.uid, 'swipes', userSwiped.id), userSwiped)
+
+                    // Create a Match
+                    setDoc(doc(db, 'matches', generateId(user.uid, userSwiped.id)), {
+                        users: {
+                            [user.uid]: loggedInProfile,
+                            [userSwiped.id]: userSwiped
+                        },
+                        usersMatched: [user.uid, userSwiped.id],
+                        timestamp: serverTimestamp()
+                    })
+
+                    navigation.navigate('Match', {
+                        loggedInProfile,
+                        userSwiped
+                    })
+                } else {
+                    setDoc(doc(db, 'users', user.uid, 'swipes', userSwiped.id), userSwiped)
+                }
+            })
     }
 
     return (
