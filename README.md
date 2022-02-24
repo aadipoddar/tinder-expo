@@ -8,6 +8,8 @@
 - Get matched with a user
 - Realtime Chat with mathced users
 
+Try the demo on [Expo](https://expo.dev/@aadipoddar/tinder-expo)
+
 Screenshots - <br/>
 
 ![image](https://user-images.githubusercontent.com/83405769/155358779-cde1ba37-95eb-4ae4-82dc-be141a1552d2.png)
